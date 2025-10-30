@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shingo | Portfolio</title>
+  <meta name="description" content="Shingoのポートフォリオ。OS/カーネル、ネットワーク、Web開発の制作物を紹介します。" />
+  <meta property="og:title" content="Shingo | Portfolio" />
+  <meta property="og:description" content="OS/カーネル、ネットワーク、Web開発の制作物を紹介します。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://Tachi-Shin.github.io/" />
+  <meta property="og:image" content="assets/image/og.png" />
+  <link rel="icon" href="assets/image/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="site.webmanifest">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Shingo",
+    "url": "https://YOUR_NAME.github.io/",
+    "sameAs": [
+      "https://github.com/YOUR_NAME"
+    ],
+    "jobTitle": "学生・低レイヤーエンジニア志望",
+    "description": "OS/カーネル、ネットワーク、Web。車輪の再発明上等。"
+  }
+  </script>
+  <link rel="preload" href="assets/css/style.css" as="style" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+  <site-header data-active="home"></site-header>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <canvas id="bg-canvas" aria-hidden="true"></canvas>
+      <div class="hero__inner reveal">
+        <h1 class="hero__title">Shingo</h1>
+        <p class="hero__subtitle">OS / Kernel / Network / Web</p>
+        <div class="hero__cta">
+          <a class="btn" href="projects.html">制作物を見る</a>
+          <a class="btn btn--ghost" href="about.html">プロフィール</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid qcards" id="highlights" data-cq="cards">
+      <article class="qcard reveal">
+        <h3>低レイヤー</h3>
+        <p>Arm64 bare-metal / 割り込み / スケジューラ / U-Boot / QEMU。</p>
+        <a href="projects.html#os" class="link">詳しく</a>
+      </article>
+      <article class="qcard reveal">
+        <h3>ネットワーク</h3>
+        <p>UDP/TCPユーティリティ、NAT越え、JSONプロトコル設計。</p>
+        <a href="projects.html#network" class="link">詳しく</a>
+      </article>
+      <article class="qcard reveal">
+        <h3>Web</h3>
+        <p>Flask + MySQL、PWA、セキュア設計とXSS/SQLi対策。</p>
+        <a href="projects.html#web" class="link">詳しく</a>
+      </article>
+    </section>
+
+    <section class="timeline reveal">
+      <h2>最近の出来事</h2>
+      <ul id="news-list" class="timeline__list" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <site-footer></site-footer>
+
+  <script type="module" src="assets/js/main.js"></script>
+  <script src="assets/js/particles.js" defer></script>
+</body>
+</html>

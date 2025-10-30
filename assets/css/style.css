@@ -1,0 +1,121 @@
+/* ======= CSS: モダンかつ軽量 ======= */
+:root{
+  --bg: #0b0d10;
+  --fg: #dfe5ee;
+  --muted:#9aa4b2;
+  --primary:#5b9cff;
+  --card:#12151b;
+  --border:#262b36;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+html[data-theme="light"]{
+  --bg: #fafafa;
+  --fg: #0e1217;
+  --muted:#556070;
+  --primary:#2d6cdf;
+  --card:#ffffff;
+  --border:#e5e8ef;
+  --shadow: 0 8px 18px rgba(0,0,0,.08);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  color:var(--fg);
+  background:radial-gradient(1000px 800px at 80% -20%, rgba(93,129,255,.15), transparent 60%) ,var(--bg);
+  font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+.container{width:min(1100px, 92vw); margin-inline:auto; padding:32px 0 64px}
+
+a{color:var(--primary); text-decoration:none}
+a:hover{text-decoration:underline}
+
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:var(--primary); color:#fff; border:none; border-radius:12px;
+  padding:.7rem 1rem; font-weight:600; text-decoration:none; box-shadow:var(--shadow);
+  transition:transform .12s ease, filter .12s ease;
+}
+.btn:hover{transform:translateY(-1px); text-decoration:none}
+.btn--ghost{background:transparent; color:var(--fg); outline:1px solid var(--border); box-shadow:none}
+.btn--sm{padding:.45rem .75rem; border-radius:10px; font-size:.9rem}
+
+header.site{
+  position:sticky; top:0; z-index:10; backdrop-filter:saturate(140%) blur(10px);
+  background:color-mix(in srgb, var(--bg), transparent 45%); border-bottom:1px solid var(--border);
+}
+.nav{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.75rem 4vw}
+.nav__brand{display:flex; align-items:center; gap:.6rem; font-weight:800; letter-spacing:.3px}
+.nav__links{display:flex; gap:.2rem; flex-wrap:wrap}
+.nav__links a{padding:.6rem .75rem; border-radius:10px}
+.nav__links a[aria-current="page"]{background:var(--card); outline:1px solid var(--border)}
+
+.theme-toggle{inline-size:42px; block-size:38px; display:grid; place-items:center; border-radius:10px; outline:1px solid var(--border); cursor:pointer}
+.theme-toggle:focus-visible{outline:2px solid var(--primary)}
+
+.hero{position:relative; min-block-size:65svh; display:grid; place-items:center; padding:48px 0}
+.hero__inner{text-align:center; max-inline-size:780px}
+.hero__title{font-size:clamp(36px, 5vw, 68px); letter-spacing:.8px; margin:.2em 0}
+.hero__subtitle{color:var(--muted); font-weight:500; margin:0 0 1rem}
+
+.grid{display:grid; gap:18px}
+.cards{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.qcards{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+.card,.qcard{
+  background:var(--card); padding:18px; border-radius:16px; border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+.card h3,.qcard h3{margin-top:0}
+
+.prose h1,.prose h2{margin:0 0 .4em}
+.prose p{margin:.6em 0}
+.prose ul{padding-left:1.1em}
+blockquote{margin:1em 0; padding:1em; background:var(--card); border-left:3px solid var(--primary)}
+
+.skills{display:grid; gap:.6rem}
+.skill{display:flex; align-items:center; gap:1rem; background:var(--card); border:1px solid var(--border); padding:.5rem .75rem; border-radius:12px}
+.skill meter{width:160px}
+
+.timeline{margin-top:36px}
+.timeline__list{list-style:none; padding:0; display:grid; gap:.75rem}
+.timeline__item{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:.75rem .9rem}
+.timeline__date{color:var(--muted); font-size:.9rem}
+
+footer.site{border-top:1px solid var(--border); padding:24px 4vw; color:var(--muted)}
+
+/* Reveal */
+.reveal{opacity:0; transform:translateY(8px); transition:opacity .6s ease, transform .6s ease}
+.reveal.is-visible{opacity:1; transform:none}
+
+/* Container Query demo */
+@container cards (min-width: 640px){
+  .card{display:grid; grid-template-rows:auto 1fr auto}
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce){
+  .reveal{transition:none}
+  .btn{transition:none}
+}
+
+/* Canvas fits hero */
+#bg-canvas{position:absolute; inset:0; width:100%; height:100%; z-index:-1; display:block}
+
+/* Forms */
+form.contact{display:grid; gap:.8rem; max-width:560px}
+form.contact label{display:grid; gap:.35rem}
+input,textarea{
+  color:var(--fg); background:var(--card); border:1px solid var(--border);
+  border-radius:10px; padding:.65rem .8rem; outline: none;
+}
+input:focus, textarea:focus{border-color:var(--primary)}
+
+/* Small utilities */
+.link{font-weight:600}
+.visually-hidden{position:absolute; width:1px; height:1px; clip:rect(0 0 0 0); overflow:hidden; white-space:nowrap}

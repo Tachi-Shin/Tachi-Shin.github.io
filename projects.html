@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects | Shingo</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <site-header data-active="projects"></site-header>
+  <main id="main" class="container">
+    <section class="prose reveal">
+      <h1>Projects</h1>
+      <p>代表的な制作物を抜粋しています。詳細はGitHubをご覧ください。</p>
+    </section>
+
+    <section id="os" class="grid cards reveal">
+      <h2>OS / Kernel</h2>
+      <article class="card">
+        <h3>OHMI (ARM64)</h3>
+        <p>UART出力、BSSクリア、タイマ割り込み、GICv2、ラウンドロビン・スケジューラ。</p>
+        <a class="btn btn--sm" href="https://github.com/YOUR_NAME/ohmi" target="_blank" rel="noopener">Repo</a>
+      </article>
+      <article class="card">
+        <h3>k16 CPU 実験</h3>
+        <p>16bit RISC風CPUでタイマー/LFSR/乗算器/IOを活用したデモプログラム。</p>
+      </article>
+    </section>
+
+    <section id="network" class="grid cards reveal">
+      <h2>Network</h2>
+      <article class="card">
+        <h3>com_json / tcp_com_json</h3>
+        <p>JSONベースのハートビート＆データ交換ユーティリティ（UDP/TCP）。</p>
+      </article>
+    </section>
+
+    <section id="web" class="grid cards reveal">
+      <h2>Web</h2>
+      <article class="card">
+        <h3>SecProNexus</h3>
+        <p>Flask + MySQL の学内SNS/CTF統合プラットフォーム。XSS/SQLi対策済み。</p>
+      </article>
+    </section>
+  </main>
+  <site-footer></site-footer>
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

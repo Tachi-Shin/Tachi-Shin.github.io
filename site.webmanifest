@@ -1,0 +1,15 @@
+{
+  "name": "Shingo Portfolio",
+  "short_name": "Shingo",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0d10",
+  "theme_color": "#5b9cff",
+  "icons": [
+    {
+      "src": "assets/image/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

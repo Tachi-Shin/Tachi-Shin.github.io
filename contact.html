@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | Shingo</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <site-header data-active="contact"></site-header>
+  <main id="main" class="container">
+    <section class="prose reveal">
+      <h1>Contact</h1>
+      <p>GitHubのIssueやDiscussions、または下記フォームからどうぞ。</p>
+      <form class="contact" name="contact" netlify method="post">
+        <input type="hidden" name="form-name" value="contact">
+        <label>お名前<input name="name" required></label>
+        <label>メール<input type="email" name="email" required></label>
+        <label>内容<textarea name="message" rows="6" required></textarea></label>
+        <button class="btn" type="submit">送信</button>
+      </form>
+      <p class="note">※ GitHub Pagesは動的処理ができないため、外部フォーム（Netlify Forms等）を推奨。</p>
+    </section>
+  </main>
+  <site-footer></site-footer>
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>
