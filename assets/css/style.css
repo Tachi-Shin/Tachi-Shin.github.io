@@ -75,7 +75,7 @@ a:hover{text-decoration:underline}
 
 header.site{
   position:sticky; top:0; z-index:10; backdrop-filter:saturate(140%) blur(10px);
-  background:color-mix(in srgb, var(--bg), transparent 45%); border-bottom:1px solid var(--border);
+  background:color-mix(in srgb, var(--bg), transparent 100%); border-bottom:1px solid var(--border);
 }
 .nav{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.75rem 4vw}
 .nav__brand{display:flex; align-items:center; gap:.6rem; font-weight:800; letter-spacing:.3px}
