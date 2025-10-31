@@ -137,3 +137,8 @@ input:focus, textarea:focus{border-color:var(--primary)}
 .affiliation__inner a:hover {
   text-decoration: underline;
 }
+
+#affiliation {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
