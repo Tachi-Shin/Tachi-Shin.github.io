@@ -78,7 +78,7 @@ const news = [
   { date:"2025-09-15", text:"ARM64 タイマ割り込みとGICv2初期化を整理。" },
   { date:"2025-08-01", text:"Flask + MySQL のSNS開発メモを更新。" },
   { date:"2025-08-01", text:"石川県警察本庁舎で庁舎見学とCTFの参加" },
-  { date:"2025-06～", text:"VA Linux Systems Japan社で長期インターンシップを開始(継続中)" },
+  { date:"2025-06-09～", text:"VA Linux Systems Japan社で長期インターンシップを開始(継続中)" },
 ];
 const list = document.querySelector("#news-list");
 if(list){
