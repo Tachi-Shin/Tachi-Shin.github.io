@@ -30,7 +30,6 @@ class SiteHeader extends HTMLElement{
             <a href="index.html" ${active==="home"?'aria-current="page"':''}>Home</a>
             <a href="projects.html" ${active==="projects"?'aria-current="page"':''}>Projects</a>
             <a href="about.html" ${active==="about"?'aria-current="page"':''}>About</a>
-            <a href="contact.html" ${active==="contact"?'aria-current="page"':''}>Contact</a>
           </div>
           <button class="theme-toggle" id="themeToggle" title="テーマ切替" aria-label="テーマ切替">
             <span class="visually-hidden">テーマ切替</span>🌓
