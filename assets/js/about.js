@@ -1,0 +1,123 @@
+/*
+ * 入力テキスト（頂いた箇条書きをそのまま貼付）
+ * 先頭の *(ステージ)本文 の形式をパースします。
+ * タグ（活動 or 経験）は文末の「(活動」「(経験」「(活動・経験」等の語から自動推定。
+ */
+const RAW_TIMELINE = `
+*(小学生)ビデオゲームにハマり、将来ゲームを作りたいと思い、ダーンボールゲーム機を作りだし、中古ショップで買ってもらったレトロゲーム機(PS1)を分解したり、ネットで調べるうちにbitという概念を知る(仕組みは理解していない)(経験)
+*(中学生)初めて親から与えられたPCにインストールされていたWindowsVistaのWindows AeroのUIを気に入り、OSを作ってみたいと思うようになる(経験)
+*(中学生)2年生のとき秋葉原に旅行をしに行ったときに自作PCのパーツなどを買い、後日自作へ(経験)
+*(中学生)CドライブがHDDでは動作がおもすぎて、見様見真似でSSDへクローン(経験)
+*(中学生)プログラミング言語というものがあると高校の体験入学で知り、体験でVisualBASIC for Applicationでもぐらたたきを作る(経験)
+*(高校生)授業で基礎的な論理回路とC言語を学び始める(経験)
+*(高校生)自作PCでC言語の実行環境を構築しようとして失敗(経験)
+*(高校生)2年生のときにはんだ付けで電子回路の構築とArduinoを用いたマイコン制御を競うものづくりコンテストで滋賀県3位(5人しか参加していなかった上に下位2人は回路が完成せず失点でなし崩し的に3位へ)(活動)
+*(高校生)書店で「ゼロからのOS自作入門」と「作って理解するOS x86系コンピュータを動かす理論と実装」を購入し、書籍の内容を理解することはできなかったが、本格的にOS開発を目指す。(経験)
+*(高校生)OSに付いて調べていくに当たり、TRONを知り、TronApplicationDatabusに強い興味を持つ(経験)
+*(高校生)基本情報技術者試験を受験し、午前試験午後試験ともに約20点足りず不合格に(経験)
+*(高校生)ITパスポート試験を受験し、ギリギリ不合格に(経験)
+*(高校生)3年でもものづくりコンテストに参加したが、通信方式がシリアル通信に変わり、バッファでつまずき、大敗(経験)
+*(大学生)「情報セキュリティ・スキルアッププロジェクト」という情報工学科の学科プロジェクトに入部。3年生が1年生授業の先取り授業を行ってくれる。そこで初めてLinux(Ubuntu)に触れた。(活動・経験)
+*(大学生)1年生の夏休みに仮想マシン上のUbuntuでMikanOSのビルドをしようとして環境構築に失敗し、挫折(経験)
+*(大学生)授業でPythonとJavaを学ぶ、Pythonは文法が慣れ親しんだC言語とかけ離れていて苦手意識を持つように、Javaは書きやすいが、オブジェクト指向を身につけるのに苦労する。(経験)
+*(大学生)C++に挑戦してみるが、Javaよりもオブジェクト指向のコーディング方法が難しく避けるように(経験)
+*(大学生)春休みにセキュリティ・ミニキャンプ大阪2024のOSの開発環境構築の講座を受けるために参加するも、Limineやリンカなどになれず、それきりに(活動)
+*(大学生)所属学科プロジェクトにおいて、先輩から2年全員でWebサービスを作り、Qiitaに投稿するようにお題が出される(経験)
+*(大学生)学内SNSを作るという無茶な計画が上がるものの、まずは掲示板から作る計画となるが、Pythonで開発するか、Java、PHPで開発するかで議論が発生したり、自分も含め、GitHubが使えない人がほとんどのため、全くチーム開発にならなかった(経験)
+*(大学生)結局私はPHPで勝手に作った。しかし、最終的に全員授業で触れたことがあるPythonのFlaskで開発することが決まり、PHPで作ったものをPythonのFlaskに移植した(活動・経験)
+*(大学生)しかし、XSS攻撃ができてしまったり、要件定義をまともにしていなかったためにスパゲッティコード化し、手がつけられなくなった(活動・経験)
+*(大学生)夏休みに夏季特別講座で「AI応用Ⅰ・Ⅱ」を受ける。仕組みそのものを理解するのは難しく感じたものの、実装自体は比較的スムーズに行うことができ、犬と猫を識別する学習モデルを作成し、AIを身近に感じた(経験)
+*(大学生)プロジェクトデザインの授業で野々市市からのお題の一つとして「高齢者でもスマホを身近に」というテーマを選択し、高齢者が自身でスマホの練習ができるようにするための「タッチ・スワイプ・文字入力」の練習ができるミニゲームをAndroidで開発した(経験)
+*(大学生)AVRアーキテクチャのArduinoでモノクロのTV出力ができる「Arduino TVout Library」をArduino Uno R4で動かそうとしたところ、アーキテクチャの違いで動作をさせることができなかったので、自作しようとするが、NTSC信号をうまく生成できず挫折(経験)
+*(大学生)TVoutライブラリをArduino Uno R3で動かすとして、そのライブラリが生成した画面データをシリアル通信でPCに送り、PySerialとPygameで擬似的にPCの画面にブラウン管を再現できるようにした(本当はその上でMS-DOSライクのOSか自作のBASICを作って動かしたかった)(経験)
+*(大学生)その仕組を学内の情報工学科の学生が集まるLT会で発表する。また、その仕組を発展させ、RaspberryPiPicoWでNTSC信号は生成しないものの、PCから入力した文字をASCIIコードに対応するドットパーターンで表示する事ができるシステムを自作した(経験・活動)
+*(大学生)オペレーティングシステムの授業でOSの具体的な仕組み(高水準入出力・低水準入出力、メモリ管理、プロセス、スレッド、)を学んだ(経験)
+*(大学生)学科プロジェクトの副リーダーに選出される。担当授業分野は論理回路・簡単なプログラミング言語の仕組み・簡単なC言語・簡単なLinuxコマンドを担当する。そのほかに学内専用SNSの開発を担うが、相変わらず要件定義が苦手なため、再度作り直しをするもののスパゲッティコード化する(活動・経験)
+*(大学生)春休みに先輩の卒業研究発表を公聴するものの、そのクオリティに圧倒され、自分が4年生になったときにそれができるのかという焦りと絶望を覚える(経験)
+*(大学生)DeepSeekでCUDAとPTXを知り、OpenGLと合わせた映像表現に興味を持つ(経験)
+*(大学生)学内専用SNSの開発において、要件定義をしていなかったせいでデータベースの仕様が2往3往する。結果、スパゲッティコードになった(活動・経験)
+*(大学生)ひとまず、新入生に作ってもらう自己紹介HTMLを表示することができるWebサーバーを運用することとし、それを仮SNSとした(活動・経験)
+*(大学生)応用情報技術者試験を受験し、自己採点時点で不合格に(経験)
+*(大学生)低レイヤー技術以外にも、モダンな技術としてアプリ開発能力を鍛えるべく、近距離無線でメッセージングやボイスチャットできるアプリ「MeTellChat(ミーテルチャット：見てる、チャットとかけて)」の開発を開始する(経験)
+*(大学生)情報工学科の専門実験の授業でAndroidアプリの開発をするに当たり、写真と日記と位置情報を記録できるアプリの開発を開始する(経験)
+*(大学生)Chat GPTの力を借りて、QEMUのLegacyBIOS上でgrubを用いたx86のコードを動かすことができ、Hello World!!を表示することができたものの、レジスタの扱いが全くわからず、また自作OS計画を挫折しかけた(経験)
+*(大学生)金沢工業大学の情報工学科の学科プロジェクトの学生の集まりである「KIT DevelopersHub」の技術書執筆プロジェクトである「Project KIT」でArduino TVoutをARMマイコンでも動かすことができるようにしようというテーマで執筆。しかし、NTSCの信号がうまく生成できず、失敗したことを執筆(活動・経験)
+*(大学生)データサイエンスの授業の特別講義で講演をしてくださった方のVA Linux Japanに興味を持ち、インターンシップを志望する(経験)
+`.trim();
+
+/* ステージの降順優先度（大→小） */
+const STAGE_WEIGHT = { "大学生": 4, "高校生": 3, "中学生": 2, "小学生": 1 };
+
+/* 1) パース */
+const items = RAW_TIMELINE
+  .split(/\r?\n/)
+  .map((line, idx) => {
+    const m = line.match(/^\*\(([^)]+)\)(.+)$/); // *(ステージ) 本文…
+    if(!m) return null;
+    const stage = m[1].trim();
+    const textFull = m[2].trim();
+
+    // タグ推定（活動 / 経験 / 活動・経験）
+    let tag = "経験";
+    if (/(活動・?経験|経験・?活動)/.test(textFull)) tag = "活動・経験";
+    else if (/活動/.test(textFull)) tag = "活動";
+    else if (/経験/.test(textFull)) tag = "経験";
+
+    // 文末の(活動…)(経験…)表記は表示用からは外す
+    const text = textFull.replace(/\((活動・?経験|経験・?活動|活動|経験)\)\s*$/,'').trim();
+
+    return {
+      stage,
+      tag,
+      text,
+      order: idx,
+      weight: STAGE_WEIGHT[stage] ?? 0
+    };
+  })
+  .filter(Boolean);
+
+/* 2) 降順ソート：ステージ優先 → もとの並び順 */
+items.sort((a,b)=>{
+  if (b.weight !== a.weight) return b.weight - a.weight;    // 大学生→高校生→…
+  return a.order - b.order;                                  // 同一ステージは原順
+});
+
+/* 3) 描画 */
+const $root = document.getElementById('timeline');
+const frag = document.createDocumentFragment();
+
+for(const it of items){
+  const item = document.createElement('div');
+  item.className = 'tl-item';
+
+  const dot = document.createElement('div');
+  dot.className = 'tl-dot';
+
+  const card = document.createElement('article');
+  card.className = 'tl-card';
+
+  const head = document.createElement('div');
+  head.className = 'tl-head';
+
+  const stage = document.createElement('span');
+  stage.className = 'tl-stage';
+  stage.textContent = it.stage;
+
+  const tag = document.createElement('span');
+  tag.className = 'tl-tag';
+  tag.textContent = it.tag;
+
+  const body = document.createElement('div');
+  body.className = 'tl-text';
+  body.textContent = it.text;
+
+  head.appendChild(stage);
+  head.appendChild(tag);
+  card.appendChild(head);
+  card.appendChild(body);
+
+  item.appendChild(dot);
+  item.appendChild(card);
+  frag.appendChild(item);
+}
+$root.appendChild(frag);

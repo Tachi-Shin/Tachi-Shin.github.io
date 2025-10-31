@@ -1,0 +1,78 @@
+/* ===== About page scoped ===== */
+body[data-page="about"] .history{ margin: 28px 0 64px; }
+body[data-page="about"] .timeline{
+  position: relative;
+  background: transparent;
+  color: var(--fg);
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 8px 0;
+}
+body[data-page="about"] .timeline::before{
+  content:"";
+  position:absolute;
+  left: 32px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: var(--border);
+  opacity:.9;
+}
+body[data-page="about"] .tl-item{
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 16px;
+  padding: 18px 0;
+}
+body[data-page="about"] .tl-dot{
+  position: relative;
+  width: 64px; height: 20px;
+}
+body[data-page="about"] .tl-dot::before{
+  content:"";
+  position:absolute;
+  left: 24px; top: 2px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--muted);
+  background: var(--bg);
+}
+body[data-page="about"] .tl-card{
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: var(--shadow);
+}
+body[data-page="about"] .tl-head{
+  display:flex; align-items:center; gap:8px;
+  margin-bottom: 4px; flex-wrap: wrap;
+}
+body[data-page="about"] .tl-stage{ font-weight:700; font-size:.95rem; }
+body[data-page="about"] .tl-tag{
+  font-size: .72rem; line-height: 1;
+  padding: 4px 6px; border-radius: 6px;
+  border: 1px solid var(--border); color: var(--muted);
+}
+body[data-page="about"] .tl-text{ font-size:.95rem; line-height:1.7; }
+
+@media (max-width: 560px){
+  body[data-page="about"] .timeline::before{ left: 24px; }
+  body[data-page="about"] .tl-item{ grid-template-columns: 56px 1fr; }
+  body[data-page="about"] .tl-dot{ width: 56px; }
+}
+
+/* 所属（このページ専用の体裁） */
+body[data-page="about"] .affiliation {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 1.05rem;
+  background: transparent;
+}
+body[data-page="about"] .affiliation__inner a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+body[data-page="about"] .affiliation__inner a:hover { text-decoration: underline; }
+body[data-page="about"] #affiliation { margin-top: 2rem; margin-bottom: 2rem; }
