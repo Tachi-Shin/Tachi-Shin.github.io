@@ -119,3 +119,21 @@ input:focus, textarea:focus{border-color:var(--primary)}
 /* Small utilities */
 .link{font-weight:600}
 .visually-hidden{position:absolute; width:1px; height:1px; clip:rect(0 0 0 0); overflow:hidden; white-space:nowrap}
+
+
+.affiliation {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 1.1rem;
+  background: transparent; /* 必要なら薄い背景に変更可 */
+}
+
+.affiliation__inner a {
+  color: var(--accent-color, #4fa3ff);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.affiliation__inner a:hover {
+  text-decoration: underline;
+}
