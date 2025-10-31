@@ -23,7 +23,7 @@ class SiteHeader extends HTMLElement{
       <header class="site">
         <nav class="nav container">
           <a class="nav__brand" href="index.html" aria-label="Home">
-            <img src="assets/image/favicon.svg" alt="" width="22" height="22" />
+            <span class="logo"></span>
             <span>Shingo</span>
           </a>
           <div class="nav__links">
@@ -53,7 +53,7 @@ class SiteFooter extends HTMLElement{
     this.innerHTML = `
       <footer class="site">
         <div class="container">
-          <small>© ${y} Shingo. Built with modern HTML/CSS/JS.</small>
+          <small>© ${y} Shingo. Shin-you STUDIO Computers.</small>
         </div>
       </footer>
     `;

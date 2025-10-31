@@ -7,7 +7,35 @@
   --card:#12151b;
   --border:#262b36;
   --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --logo-color: #000;
 }
+
+/* ロゴ（1枚のSVGで動的配色：mask方式） */
+.logo{
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  background-color: var(--logo-color);
+
+  /* Chrome / Safari */
+  -webkit-mask-image: url("../image/clean_logo_currentColor.svg");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+
+  /* Firefox */
+  mask-image: url("../image/clean_logo_currentColor.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+/* 目立たせたいならヒーローだけ拡大 */
+.hero .logo { width: 64px; height: 64px; margin-bottom: 12px; }
+
+/* Light/Dark は既存のトークンでOK */
+:root[data-applied-theme="light"] { --logo-color: #000; }
+:root[data-applied-theme="dark"]  { --logo-color: #fff; }
 
 html[data-theme="light"]{
   --bg: #fafafa;
