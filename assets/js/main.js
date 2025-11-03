@@ -96,3 +96,6 @@ if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
     window.initParticles("bg-canvas");
   }
 }
+
+
+document.documentElement.style.setProperty('--bg-speed', '30s');

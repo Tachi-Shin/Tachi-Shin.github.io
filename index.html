@@ -35,7 +35,37 @@
 
   <main id="main" class="container">
     <section class="hero">
-      <canvas id="bg-canvas" aria-hidden="true"></canvas>
+      <div class="hero-bg" aria-hidden="true">
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 上段：左向き -->
+  <div class="bg-band bg-band--top">
+    <div class="bg-track bg-track--left">
+      <img src="assets/image/covers/secpro2ch.png" alt="">
+      <img src="assets/image/covers/fake_dos_machine.JPG" alt="">
+      <img src="assets/image/covers/Disassembly.JPG" alt="">
+      <!-- ループ用に同じ順序をもう一度 -->
+      <img src="assets/image/covers/secpro2ch.png" alt="">
+      <img src="assets/image/covers/fake_dos_machine.JPG" alt="">
+      <img src="assets/image/covers/Disassembly.JPG" alt="">
+    </div>
+  </div>
+
+  <!-- 下段：右向き -->
+  <div class="bg-band bg-band--bottom">
+    <div class="bg-track bg-track--right">
+      <img src="assets/image/covers/Disassembly.JPG" alt="">
+      <img src="assets/image/covers/fake_dos_machine.JPG" alt="">
+      <img src="assets/image/covers/secpro2ch.png" alt="">
+      <!-- ループ用に同じ順序をもう一度 -->
+      <img src="assets/image/covers/Disassembly.JPG" alt="">
+      <img src="assets/image/covers/fake_dos_machine.JPG" alt="">
+      <img src="assets/image/covers/secpro2ch.png" alt="">
+    </div>
+  </div>
+</div>
+
+      <!-- 既存のヒーロー内容（そのまま） -->
       <div class="hero__inner reveal">
         <span class="logo"></span>
         <h1 class="hero__title">Shingo</h1>

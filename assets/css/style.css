@@ -170,3 +170,73 @@ input:focus, textarea:focus{border-color:var(--primary)}
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+
+/* 背景レイヤを“最背面”へ */
+.hero { position: relative; overflow: hidden; }
+.hero-bg{ position:absolute; inset:0; pointer-events:none; z-index:-2; }
+#bg-canvas{ position:absolute; inset:0; z-index:-3; }  /* ←キャンバスを最奥にしたい時 */
+
+.bg-slider{
+  position:absolute; inset:0; overflow:hidden; z-index:-2;
+}
+
+.bg-slider::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    linear-gradient(to right, var(--bg) 0%, transparent 8%),
+    linear-gradient(to left,  var(--bg) 0%, transparent 8%);
+}
+
+/* 帯コンテナ（最背面・クリック不可） */
+.bg-band{
+  position:absolute; left:0; right:0; pointer-events:none; z-index:-2;
+  overflow:hidden;
+}
+
+/* 上下の高さ（中央は本文のため空ける） */
+.bg-band--top   { top:0;    height:38%; }
+.bg-band--bottom{ bottom:0; height:38%; }
+
+/* 画像列を中央に配置して横に流す */
+/* 画像列（中央揃えで横に流す） */
+.bg-track{
+  position:absolute; left:0; top:50%;
+  display:flex; align-items:center; gap:min(3vw, 28px);
+  transform: translateY(-50%);
+  will-change: transform;
+}
+
+.bg-track img{
+  height: clamp(120px, 22vh, 260px);
+  width: auto; object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+}
+
+/* 左右で逆方向アニメーション */
+.bg-track--left  { animation: slide-left  var(--bg-speed, 60s) linear infinite; }
+.bg-track--right { animation: slide-right var(--bg-speed, 60s) linear infinite; }
+
+/* 端をやわらかく隠す（色は背景に合わせて） */
+.bg-band::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    linear-gradient(to right, var(--bg) 0%, transparent 10%),
+    linear-gradient(to left,  var(--bg) 0%, transparent 10%);
+}
+
+/* 2倍並べ想定：-50%/+50%で継ぎ目なくループ */
+@keyframes slide-left  {
+  from { transform: translateY(-50%) translateX(0%); }
+  to   { transform: translateY(-50%) translateX(-50%); }
+}
+@keyframes slide-right {
+  from { transform: translateY(-50%) translateX(-50%); }
+  to   { transform: translateY(-50%) translateX( 0%); }
+}
+
+/* 動きを減らす設定なら停止 */
+@media (prefers-reduced-motion: reduce){
+  .bg-track--left, .bg-track--right { animation: none; }
+}
