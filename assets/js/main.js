@@ -73,6 +73,10 @@ document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 
 // Simple timeline data (edit freely or fetch from GitHub API if needed)
 const news = [
+  { date:"2026-01-10", text:"Raspberry Pi 4Bで初のベアメタルでの映像出力ならびにOSプログラムの実行に成功！！U-Bootからの脱却。", link:"https://x.com/ShinyoustudioC/status/2009647021486125472/video/1" },
+  { date:"2025-12-26", text:"サイバー防犯ボランティアの新しい動画を石川県警に提出", link:"https://x.com/kitsecprj/status/2004552614009254216" },
+  { date:"2025-12-09", text:"情報セキュリティ・スキルアッププロジェクトの表彰を石川県警に報告", link:"https://www.kanazawa-it.ac.jp/kitnews/2025/1211_kitsec.html" },
+  { date:"2025-12-06", text:"Kernel/VM探検隊@北陸に初参加！！", link:"https://kernelvm.connpass.com/event/367760/" },
   { date:"2025-10-30", text:"ポートフォリオ初版を公開。", link:"https://tachi-shin.github.io/" },
   { date:"2025-10-14", text:"Flask + SQLite3 の簡易教育向けネット掲示板を公開。", link:"https://github.com/Tachi-Shin/Education_online_bulletin_board" },
   { date:"2025-08-01", text:"石川県警察本庁舎で庁舎見学とCTFの参加", link:"https://x.com/IP_cybertaisaku/status/1953308895574720769" },
